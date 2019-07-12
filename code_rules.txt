@@ -1,0 +1,6 @@
+So this file will be used to show how writing a plain text document can be done in the terminal!
+It's actually really cool, but I'll save it so that I know how files work in the github space. 
+
+Cheers,
+
+P.S. keep practicing and keep track, you're making progress!
