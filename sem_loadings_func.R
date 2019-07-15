@@ -1,3 +1,5 @@
+#this is something to try to build out even further!
+
 sem_loadings <- function(x, ...){
      require(tidyverse)
      
