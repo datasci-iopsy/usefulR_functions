@@ -4,7 +4,7 @@
 shhh = function(...){
     suppressWarnings(
         suppressPackageStartupMessages(base::library(...))
-        )
-    }
+    )
+}
 
 #instead of library use "shhh" to call packages now!

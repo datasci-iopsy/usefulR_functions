@@ -4,11 +4,12 @@
 require(dplyr)
 
 factorise <- function(x) {
-      case_when(x %in% c("Strongly disagree") ~ 1,
+      case_when(
+                x %in% c("Strongly disagree") ~ 1,
                 x %in% c("Disagree") ~ 2,
                 x %in% c("Neither agree nor disagree") ~ 3,
                 x %in% c("Somewhat agree") ~ 4,
                 x %in% c("Strongly agree") ~ 5)
 }
 
-new.data <- as.data.frame(sapply(old.data, factorise))
+new_df <- as.data.frame(sapply(old_df, factorise))
