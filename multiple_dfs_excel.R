@@ -1,6 +1,6 @@
 # create a function to write multiple dataframes into sep sheets 
 
-save.xlsx <- function (file, ...) {
+save_xlsx = function (file, ...) {
      #use 'require' when loading package in function
      require(xlsx, quietly = TRUE)
      objects <- list(...)
@@ -15,6 +15,5 @@ save.xlsx <- function (file, ...) {
           else write.xlsx(objects[[i]], file, sheetName = objnames[i], 
                           append = TRUE, row.names = F)
      }
-     
      print(paste("The workbook", file, "has", nobjects, "worksheets."))
 }
