@@ -44,16 +44,16 @@ cappedOutliers <- function(dt, var, gtitle = NULL) {
     
     m2 <- mean(var_name, na.rm = T)
     
-    message("Mean without Removing Outliers: ", round(m1, 2))
-    message("Mean if Outliers are Removed: ", round(m2, 2))
+    message("Mean without Capping Outliers: ", round(m1, 2))
+    message("Mean if Outliers are Capped: ", round(m2, 2))
     
     response <- readline(
-        prompt="Do you want to remove outliers and replace with NAs? [y/n]: ")
+        prompt="Do you want to cap outliers? [y/n]: ")
     
     if (response == "y" | response == "yes") {
-            dt[as.character(substitute(var))] <- invisible(var_name)
-            assign(as.character(as.list(match.call())$dt), dt, envir = .GlobalEnv)
-            message("Outliers successfully capped", "\n")
+        dt[as.character(substitute(var))] <- invisible(var_name)
+        assign(as.character(as.list(match.call())$dt), dt, envir = .GlobalEnv)
+        message("Outliers successfully capped", "\n")
         
         return(invisible(dt))
         
