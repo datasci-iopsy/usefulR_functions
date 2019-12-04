@@ -1,5 +1,5 @@
-#outlier detection
-#this function can be used to cap outliers 
+#outlier detection - boxplot and histogram plots
+#this function can be used to cap outliers and show respective output
 
 cappedOutliers <- function(dt, var, gtitle = NULL) {
     gtitle = as.character(gtitle)
@@ -51,9 +51,9 @@ cappedOutliers <- function(dt, var, gtitle = NULL) {
         prompt="Do you want to remove outliers and replace with NAs? [y/n]: ")
     
     if (response == "y" | response == "yes") {
-        dt[as.character(substitute(var))] <- invisible(var_name)
-        assign(as.character(as.list(match.call())$dt), dt, envir = .GlobalEnv)
-        message("Outliers successfully capped", "\n")
+            dt[as.character(substitute(var))] <- invisible(var_name)
+            assign(as.character(as.list(match.call())$dt), dt, envir = .GlobalEnv)
+            message("Outliers successfully capped", "\n")
         
         return(invisible(dt))
         
