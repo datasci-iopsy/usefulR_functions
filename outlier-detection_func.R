@@ -1,4 +1,8 @@
-out_detect <- function(dt, var) {
+#outlier detection
+#this function can be used to cap outliers 
+
+cappedOutliers <- function(dt, var, gtitle = NULL) {
+    gtitle = as.character(gtitle)
     var_name <- eval(substitute(var), eval(dt))
     
     tot <- sum(!is.na(var_name))
@@ -14,17 +18,28 @@ out_detect <- function(dt, var) {
     outlier <- boxplot.stats(var_name)$out
     mo <- mean(outlier)
     
-    var_name <- ifelse(var_name %in% outlier, NA, var_name)
+    cap_func = function(x) {
+        quants = quantile(x, probs = c(.25, .75), na.rm = TRUE)
+        caps = quantile(x, probs = c(.05, .95), na.rm = TRUE)
+        H = 1.5 * IQR(x, na.rm = TRUE)
+        
+        x[x < (quants[1] - H)] <- caps[1]
+        x[x > (quants[2] + H)] <- caps[2]
+        
+        return(x)
+    }
     
-    boxplot(var_name, main = "Without Outliers")
-    hist(var_name, main = "Without Outliers", xlab = NA, ylab = NA)
+    var_name <- ifelse(var_name %in% outlier, cap_func(var_name), var_name)
     
-    title("Outlier Check", outer = TRUE)
+    boxplot(var_name, main = "With Capped Outliers")
+    hist(var_name, main = "Without Capped Outliers", xlab = NA, ylab = NA)
+    
+    title(paste("Outlier Check: ", gtitle), outer = TRUE)
     
     na2 <- sum(is.na(var_name))
     
-    message("Outliers Identified: ", na2 - na1, " from ", tot, " Observations")
-    message("Proportion (%) of Outliers: ", round((na2 - na1) / tot * 100), 2, "%")
+    #message("Outliers Identified: ", na2 - na1, " from ", tot, " Observations")
+    #message("Proportion (%) of Outliers: ", round((na2 - na1) / tot * 100), 2, "%")
     message("Mean of the Outliers: ", round(mo, 2))
     
     m2 <- mean(var_name, na.rm = T)
@@ -38,7 +53,7 @@ out_detect <- function(dt, var) {
     if (response == "y" | response == "yes") {
         dt[as.character(substitute(var))] <- invisible(var_name)
         assign(as.character(as.list(match.call())$dt), dt, envir = .GlobalEnv)
-        message("Outliers successfully removed", "\n")
+        message("Outliers successfully capped", "\n")
         
         return(invisible(dt))
         
