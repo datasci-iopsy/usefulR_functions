@@ -47,19 +47,10 @@ cappedOutliers <- function(dt, var, gtitle = NULL) {
     message("Mean without Capping Outliers: ", round(m1, 2))
     message("Mean if Outliers are Capped: ", round(m2, 2))
     
-    response <- readline(
-        prompt="Do you want to cap outliers? [y/n]: ")
+    dt[as.character(substitute(var))] <- invisible(var_name)
+    assign(as.character(as.list(match.call())$dt), dt, envir = .GlobalEnv)
+    message("Outliers successfully capped", "\n")
     
-    if (response == "y" | response == "yes") {
-        dt[as.character(substitute(var))] <- invisible(var_name)
-        assign(as.character(as.list(match.call())$dt), dt, envir = .GlobalEnv)
-        message("Outliers successfully capped", "\n")
-        
-        return(invisible(dt))
-        
-    } else {
-        message("Nothing changed", "\n")
-        
-        return(invisible(var_name))
-    }
+    return(invisible(dt))
 }
+
