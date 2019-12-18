@@ -1,4 +1,5 @@
 #changes factors or strings to num/dbls
+#default is a 5-point Likert-type scale
 
 unfactorise = function(x) {
      case_when(
@@ -9,3 +10,8 @@ unfactorise = function(x) {
           x %in% c("Strongly agree", ...) ~ 5
           )
 }
+
+#example: 
+#sapply function across rows 1 thru 32
+datNew = data.frame(sapply(datRaw[, 1:32], unfactorise))
+head(dat)
