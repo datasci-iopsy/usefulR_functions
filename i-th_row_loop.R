@@ -1,4 +1,5 @@
-#function for every ith row
+#function for every ith row - TBD
+
 nrow_gen <- function(x,y) {
      n <- nrow(x)
      b <- seq(1,n,y)
