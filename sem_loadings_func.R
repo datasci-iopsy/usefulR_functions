@@ -1,4 +1,6 @@
 #this is something to try to build out even further!
+#install.packages("lavaan")
+library(lavaan)
 
 sem_loadings <- function(x, ...){
      require(tidyverse)
