@@ -1,5 +1,10 @@
+# Outlier removal by the Tukey rules on quartiles +/- 1.5 IQR
+# 2017 Klodian Dhana
+## https://datascienceplus.com/identify-describe-plot-and-removing-the-outliers-from-the-dataset/
+# Edited on 11/28/2019 by Demetrius Green
+
 #outlier detection - boxplot and histogram plots
-#this function can be used to cap outliers and show respective output
+#this function is used to cap outliers and show respective output
 
 cappedOutliers <- function(dt, var, gtitle = NULL) {
     gtitle = as.character(gtitle)
