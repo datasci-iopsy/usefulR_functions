@@ -7,4 +7,4 @@ shhh = function(...){
     )
 }
 
-#instead of library use "shhh" to call packages now!
+#instead of `library()` use `shhh()` to call packages now!

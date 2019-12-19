@@ -3,6 +3,7 @@
 save_xlsx = function (file, ...) {
      #use 'require' when loading package in function
      require(xlsx, quietly = TRUE)
+        
      objects <- list(...)
      fargs <- as.list(match.call(expand.dots = TRUE))
      objnames <- as.character(fargs)[-c(1, 2)]
