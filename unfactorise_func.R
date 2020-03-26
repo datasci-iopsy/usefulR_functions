@@ -1,17 +1,29 @@
 #changes factors or strings to num/dbls
 #default is a 5-point Likert-type scale
 
+#the '...' repreent additional factors that can listed for a specific numb
+
 unfactorise = function(x) {
      case_when(
-          x %in% c("Strongly disagree", ...) ~ 1,
-          x %in% c("Somewhat disagree", ...) ~ 2,
-          x %in% c("Neither agree nor disagree", ...) ~ 3,
-          x %in% c("Somewhat agree", ...) ~ 4,
-          x %in% c("Strongly agree", ...) ~ 5
+          x %in% c(
+              "Strongly disagree", 
+              ...) ~ 1,
+          x %in% c(
+              "Somewhat disagree", 
+              ...) ~ 2,
+          x %in% c(
+              "Neither agree nor disagree", 
+              ...) ~ 3,
+          x %in% c(
+              "Somewhat agree", 
+              ...) ~ 4,
+          x %in% c(
+              "Strongly agree", 
+              ...) ~ 5
           )
 }
 
 #example: 
 #sapply function across rows 1 thru 32
-datNew = data.frame(sapply(datRaw[, 1:32], unfactorise))
+datNew = data.frame(sapply(dat[, 1:32], unfactorise))
 head(dat)
